@@ -1,0 +1,77 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="{% static 'chatgpt_connector/bootstrap-5.2.3/css/bootstrap.css' %}">
+  <link rel="stylesheet" href="{% static 'chatgpt_connector/font.css' %}">
+  <script src="{% static 'chatgpt_connector/bootstrap-5.2.3/js/bootstrap.min.js' %}"></script>
+  <script src="{% static 'chatgpt_connector/bootstrap-5.2.3/js/bootstrap.bundle.js' %}"></script>
+  <title>Online AI Image Generator | AImage</title>
+</head>
+
+<body>
+  <header>
+    {% include "./navbar.html" %}
+  </header>
+
+  <section>
+    <div class="container p-5">
+      <div class="row py-5">
+        <div class="col-lg-6 py-5">
+          <h1>Online AI Image Generator</h1>
+          <h5 class="py-3">
+            <p class="text-muted">Watch your words and phrases transform into beautiful images with Text to Image.</p>
+          </h5>
+          <a href="/generator" class="btn btn-primary">Generate AI Images »</a>
+        </div>
+        <div class="col-lg-6 py-5">
+          <img src="{% static 'chatgpt_connector/images/ai_image.jpeg' %}" alt="Image" class="img-fluid">
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="features">
+    <div class="container px-5">
+      <h2>Our Features</h2>
+      <div class="row py-3">
+        <div class="col-lg-4">
+          <div class="card">
+            <div class="card-body">
+              <h5 class="card-title">Use your creativity</h5>
+              <p class="card-text">You just need to use your creativity. Let us do the hard job for you.</p>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-4">
+          <div class="card">
+            <div class="card-body">
+              <h5 class="card-title">Create your best work, forever</h5>
+              <p class="card-text">You can always create your work anytime, anywhere</p>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-4">
+          <div class="card">
+            <div class="card-body">
+              <h5 class="card-title">Feature 3</h5>
+              <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  
+
+  <!-- <footer>
+    <div class="container">
+      <p>&copy; 2023 Your Company. All rights reserved.</p>
+    </div>
+  </footer> -->
+</body>
+</html>
