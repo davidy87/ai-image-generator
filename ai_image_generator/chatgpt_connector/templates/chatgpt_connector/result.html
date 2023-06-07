@@ -1,0 +1,52 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="{% static 'chatgpt_connector/bootstrap-5.2.3/css/bootstrap.min.css' %}">
+  <link rel="stylesheet" href="{% static 'chatgpt_connector/font.css' %}">
+  <link rel="stylesheet" href="{% static 'chatgpt_connector/style.css' %}">
+
+  <!-- For favion -->
+  <link rel="apple-touch-icon" sizes="180x180" href="{% static 'chatgpt_connector/favicon/apple-touch-icon.png' %}">
+  <link rel="icon" type="image/png" sizes="32x32" href="{% static 'chatgpt_connector/favicon/favicon-32x32.png' %}">
+  <link rel="icon" type="image/png" sizes="16x16" href="{% static 'chatgpt_connector/favicon/favicon-16x16.png' %}">
+  <link rel="manifest" href="{% static 'chatgpt_connector/favicon/site.webmanifest' %}">
+
+  <script src="{% static 'chatgpt_connector/bootstrap-5.2.3/js/bootstrap.min.js' %}"></script>
+  <script src="{% static 'chatgpt_connector/bootstrap-5.2.3/js/bootstrap.bundle.js' %}"></script>
+
+  <style>
+    .center {
+      display: block;
+      margin-left: auto;
+      margin-right: auto;
+      /* width: 50%; */
+    }
+
+    #imgResult {
+      border: 5px solid #555;
+    }
+  </style>
+
+  <title>AI Image Generator</title>
+</head>
+<body>
+  <header>
+    {% include "./navbar.html" %}
+  </header>
+  
+  <div class="container p-5">
+    {% if img %}
+      <div class="center" style="padding-top: 10%;">
+        <h2 style="text-align: center; padding-bottom: 5%;">{{ prompt }}</h2>
+        <img id="imgResult" class="rounded center" src="{{ img }}">
+      </div>
+    {% else %}
+      <p>No image</p>
+    {% endif %}
+  </div>
+</body>
+</html>

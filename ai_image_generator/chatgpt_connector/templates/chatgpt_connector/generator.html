@@ -1,53 +1,61 @@
 {% load static %}
 
 <!DOCTYPE html>
-<html lang="ko">
+<html lang="en">
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<link rel="stylesheet" href="{% static 'chatgpt_connector/bootstrap-5.2.3/css/bootstrap.min.css' %}">
+  <link rel="stylesheet" href="{% static 'chatgpt_connector/font.css' %}">
+  <link rel="stylesheet" href="{% static 'chatgpt_connector/style.css' %}">
+
+  <!-- For favicon -->
+  <link rel="apple-touch-icon" sizes="180x180" href="{% static 'chatgpt_connector/favicon/apple-touch-icon.png' %}">
+  <link rel="icon" type="image/png" sizes="32x32" href="{% static 'chatgpt_connector/favicon/favicon-32x32.png' %}">
+  <link rel="icon" type="image/png" sizes="16x16" href="{% static 'chatgpt_connector/favicon/favicon-16x16.png' %}">
+  <link rel="manifest" href="{% static 'chatgpt_connector/favicon/site.webmanifest' %}">
+
   <script src="{% static 'chatgpt_connector/bootstrap-5.2.3/js/bootstrap.min.js' %}"></script>
   <script src="{% static 'chatgpt_connector/bootstrap-5.2.3/js/bootstrap.bundle.js' %}"></script>
 
-	<title>AI 이미지 생성기</title>
+	<title>AI Image Generator</title>
 </head>
 <body>
-	<div class="bg-light card p-5">
-		<h1>AI가 만들어주는 이미지</h1>
-	</div>
-	
-	<div class="p-5">
-    <div class="form-group py-4">
-      <label class="form-label" for="imagePrompt">Description</label>
-      <textarea class="form-control" id="imagePrompt" rows="1" placeholder="Descirbe a picture"></textarea>
+  <header>
+    <div class="pb-5">
+      {% include "./navbar.html" %}
+    </div>
+  </header>
+
+	<div class="container p-5">
+    <div class="container pt-5">
+      <h1 >What Image Would You Like to Get?</h1>
     </div>
 
-		<div class="dropdown py-4">
-			<button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-			  Choose a size
-			</button>
+    <div class="container">
+      <form action="{% url 'result' %}" method="POST">
+        {% csrf_token %}
+        <div class="form-group py-3">
+          <label class="form-label" for="imagePrompt">Description</label>
+          <input class="form-control" name="imagePrompt" placeholder="Descirbe here"></input>
+        </div>
+        
+        <div class="dropdown" style="padding-right: 88%;">
+          <select class="form-select" id="imageSize" name="imageSize">
+            <option selected>Select a size</option>
+            <option value="256x256">256x256</option>
+            <option value="512x512">512x512</option>
+            <option value="1024x1024">1024x1024</option>
+          </select>
+        </div>
 
-			<ul class="dropdown-menu">
-			  <li><a class="dropdown-item">256x256</a></li>
-			  <li><a class="dropdown-item">512x512</a></li>
-			  <li><a class="dropdown-item">1024x1024</a></li>
-			</ul>
-		</div>
+        <div class="py-5" style="text-align: center">
+          <input class="btn btn-primary" type="submit" value="Generate">
+        </div>
+      </form>
+    </div>
 	</div>
 
-	<!-- <div class="form-group">
-		<label class="form-label" for="imagePrompt">Size</label>
-		<input type="radio" value="256x256"> 256x256
-		<input type="radio" value="512x512"> 512x512
-		<input type="radio" value="1024x1024"> 1024x1024
-	</div> -->
-	<!-- <div class="d-flex justify-content-center p-5">
-		<form action="" method="POST">
-			{% csrf_token %}
-			{{ form.as_p }}
-			<button type="submit" class="btn btn-primary">이미지 만들기!</button>
-		</form>
-	</div> -->
-
+  <script src="{% static 'chatgpt_connector/script.js' %}"></script>
 </body>
 </html>

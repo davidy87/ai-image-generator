@@ -17,8 +17,11 @@ from django.contrib import admin
 from django.urls import path
 from chatgpt_connector.views import *
 
+
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', index, name='index'),
     path('generator/', generator, name='generator'),
+    path('loading/', loading, name='loading'),
+    path('result/', result, name='result'),
 ]
