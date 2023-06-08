@@ -1,11 +1,14 @@
 import os
 import openai
+from dotenv import load_dotenv
 from django.shortcuts import render, get_object_or_404
 from django.views import generic
 from chatgpt_connector.forms import *
 
 
-OPENAI_API_KEY = "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"
+# Applying Secrets
+load_dotenv()
+OPENAI_API_KEY = os.getenv("OPENAI_API_KEY")
 
 # Create your views here.
 def index(request):
