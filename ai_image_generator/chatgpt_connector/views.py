@@ -16,10 +16,6 @@ def index(request):
     return render(request, 'chatgpt_connector/index.html')
 
 
-def login(request):
-    return render(request, 'chatgpt_connector/login-screen.html')
-
-
 def generator(request):
     return render(request, 'chatgpt_connector/generator.html')
 
