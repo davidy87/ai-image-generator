@@ -1,21 +1,13 @@
-const generateBtn = document.querySelector("#generateBtn");
-const gridContainer = document.querySelector("#gridContainer");
-const picNums = new Set();
+document.getElementById("loginButton").addEventListener("click", function() {
+  document.getElementById("loginPopup").classList.remove("d-none");
+});
 
-function generateRandomPics() {
-  const randNum = Math.floor(Math.random() * 1000) + 1;
+document.getElementById("closeButton").addEventListener("click", function() {
+  document.getElementById("loginPopup").classList.add("d-none");
+});
 
-  // Prevent duplicate image
-  while (picNums.has(randNum)) {
-    randNum = Math.floor(Math.random() * 1000) + 1;
+document.addEventListener("click", function(event) {
+  if (event.target === document.getElementById("loginPopup")) {
+    document.getElementById("loginPopup").classList.add("d-none");
   }
-
-  const imgUrl = `https://picsum.photos/500?random=${randNum}`;
-  const img = document.createElement("img");
-  img.setAttribute("id", "imgGrid");
-  img.src = imgUrl;
-
-  gridContainer.appendChild(img);
-}
-
-generateBtn.addEventListener("click", generateRandomPics);
+});

@@ -6,7 +6,8 @@
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<link rel="stylesheet" href="{% static 'chatgpt_connector/bootstrap-5.2.3/css/bootstrap.min.css' %}">
-  <link rel="stylesheet" href="{% static 'chatgpt_connector/font.css' %}">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/6.3.1/mdb.min.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" />
   <link rel="stylesheet" href="{% static 'chatgpt_connector/style.css' %}">
 
   <!-- For favicon -->
@@ -16,46 +17,47 @@
   <link rel="manifest" href="{% static 'chatgpt_connector/favicon/site.webmanifest' %}">
 
   <script src="{% static 'chatgpt_connector/bootstrap-5.2.3/js/bootstrap.min.js' %}"></script>
-  <script src="{% static 'chatgpt_connector/bootstrap-5.2.3/js/bootstrap.bundle.js' %}"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/6.3.1/mdb.min.js"></script>
 
 	<title>AI Image Generator</title>
 </head>
+
 <body>
   <header>
-    <div class="pb-5">
+    <div class="pb-5" id="nav-placeholder">
       {% include "./navbar.html" %}
     </div>
   </header>
 
-	<div class="container p-5">
-    <div class="container pt-5">
-      <h1 >What Image Would You Like to Get?</h1>
+  <section>
+    <div class="container p-5">
+      <div class="container pt-5">
+        <h1 >What Image Would You Like to Get?</h1>
+      </div>
+  
+      <div class="container">
+        <form action="{% url 'result' %}" method="POST">
+          {% csrf_token %}
+          <div class="form-group py-3">
+            <label class="form-label" for="imagePrompt">Description</label>
+            <input class="form-control form-control-lg" name="imagePrompt" placeholder="Descirbe here"></input>
+          </div>
+          
+          <div class="dropdown" style="padding-right: 88%;">
+            <select class="form-select form-select-lg" id="imageSize" name="imageSize">
+              <option selected>Select a size</option>
+              <option value="256x256">256x256</option>
+              <option value="512x512">512x512</option>
+              <option value="1024x1024">1024x1024</option>
+            </select>
+          </div>
+  
+          <div class="py-5" style="text-align: center">
+            <input class="btn btn-primary" type="submit" value="Generate">
+          </div>
+        </form>
+      </div>
     </div>
-
-    <div class="container">
-      <form action="{% url 'result' %}" method="POST">
-        {% csrf_token %}
-        <div class="form-group py-3">
-          <label class="form-label" for="imagePrompt">Description</label>
-          <input class="form-control" name="imagePrompt" placeholder="Descirbe here"></input>
-        </div>
-        
-        <div class="dropdown" style="padding-right: 88%;">
-          <select class="form-select" id="imageSize" name="imageSize">
-            <option selected>Select a size</option>
-            <option value="256x256">256x256</option>
-            <option value="512x512">512x512</option>
-            <option value="1024x1024">1024x1024</option>
-          </select>
-        </div>
-
-        <div class="py-5" style="text-align: center">
-          <input class="btn btn-primary" type="submit" value="Generate">
-        </div>
-      </form>
-    </div>
-	</div>
-
-  <script src="{% static 'chatgpt_connector/script.js' %}"></script>
+  </section>
 </body>
 </html>

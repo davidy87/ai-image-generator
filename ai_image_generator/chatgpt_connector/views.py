@@ -10,9 +10,14 @@ from chatgpt_connector.forms import *
 load_dotenv()
 OPENAI_API_KEY = os.getenv("OPENAI_API_KEY")
 
+
 # Create your views here.
 def index(request):
     return render(request, 'chatgpt_connector/index.html')
+
+
+def login(request):
+    return render(request, 'chatgpt_connector/login-screen.html')
 
 
 def generator(request):
