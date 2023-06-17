@@ -1,0 +1,14 @@
+{% block content %}
+  {% for message in messages %}
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+
+    {% if message.tags == 'error' %}
+      <script>
+        var m = "{{ message }}";
+        swal(m);
+      </script>
+    {% endif %}
+
+  {% endfor %}
+
+{% endblock %}

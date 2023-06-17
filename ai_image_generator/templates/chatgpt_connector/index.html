@@ -28,6 +28,31 @@
     {% include "./navbar.html" %}
   </header>
   
+  {% if messages %}
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+    <template id="errorMessage">
+      <swal-title>Sign Up Failed</swal-title>
+      <swal-html>
+        <br>
+        <ul>
+          {% for message in messages %}
+            <li style="text-align: left;">{{ message }}</li>
+            <br>
+          {% endfor %}
+        </ul>
+      </swal-html>
+      <swal-button type="confirm">OK</swal-button>
+    </template>
+
+    <script>
+      Swal.fire({
+        icon: "error",
+        template: "#errorMessage",
+      });
+    </script>
+  {% endif %}
+
   <section class="intro">
     <div class="container p-5">
       <div class="row py-5">

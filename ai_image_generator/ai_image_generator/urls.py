@@ -25,5 +25,7 @@ urlpatterns = [
     path('generator/', generator, name='generator'),
     path('loading/', loading, name='loading'),
     path('result/', result, name='result'),
-    path('login/', login, name='login'),
+    # path('login/', login, name='login'),
+    # path('signup/', UserCreateView.as_view(), name='signup'),
+    path('signup/', signup, name='signup'),
 ]
