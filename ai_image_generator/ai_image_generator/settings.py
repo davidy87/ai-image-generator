@@ -43,7 +43,6 @@ INSTALLED_APPS = [
     'chatgpt_connector',
     'account',
 
-
     # Following apps are required for allauth
     'allauth',
     'allauth.account',
