@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect
 from django.contrib import messages
-from django.contrib.auth import authenticate, login
+from django.contrib.auth import authenticate, login, logout
 from django.views.generic import CreateView
 from django.utils.safestring import mark_safe
 from django.utils.html import format_html
@@ -10,6 +10,25 @@ from .forms import UserForm
 
 
 # Create your views here.
+def logout(request):
+    if request.method == "POST":
+        logout(request)
+        return redirect('/')
+    
+
+def login(request):
+    if request.method == "POST":
+        form = UserForm(request.POST)
+
+        if form.is_valid():
+            username = form.cleaned_data.get('username')
+            password = form.cleaned_data.get('password1')
+            user = authenticate(username=username, password=password)
+            login(request, user)
+
+            return redirect('/')
+
+
 def signup(request):
     if request.method == "POST":
         form = UserForm(request.POST)
@@ -23,6 +42,8 @@ def signup(request):
             return redirect('/')
 
         else:
+            print(form.errors)
+
             for field, errors in form.errors.items():
                 for error in errors:
                     messages.add_message(request, messages.ERROR, mark_safe(error))
@@ -30,6 +51,7 @@ def signup(request):
             return redirect('/')
     
     form = UserForm()
+    print("HERE")
     return render(request, 'chatgpt_connector/index.html', {'form': form})
 
 

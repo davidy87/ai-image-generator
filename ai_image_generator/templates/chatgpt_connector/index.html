@@ -28,11 +28,19 @@
     {% include "./navbar.html" %}
   </header>
   
+  <!-- Login / Sign Up result messages -->
   {% if messages %}
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
     <template id="errorMessage">
-      <swal-title>Sign Up Failed</swal-title>
+      {% if messages.tag == "error" %}
+        <swal-title>Sign Up Failed</swal-title>
+        <swal-icon type="error"></swal-icon>
+      {% else %}
+        <swal-title>Welcome! {{ messages.tag }}</swal-title>
+        <swal-icon type="success"></swal-icon>
+      {% endif %}
+
       <swal-html>
         <br>
         <ul>
@@ -47,7 +55,6 @@
 
     <script>
       Swal.fire({
-        icon: "error",
         template: "#errorMessage",
       });
     </script>

@@ -18,21 +18,30 @@
         </li>
       </ul>
 
-      <div class="d-flex">
-        <!-- <a href="/login" class="btn btn-secondary">
-          <span>Log in</span>
-        </a> -->
-        <button class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#loginModal">
-          <span>Log in</span>
-        </button>
-        <button class="btn btn-primary ms-3" data-bs-toggle="modal" data-bs-target="#signupModal">
-        <!-- <button class="btn btn-primary ms-3" hx-target="#dialog"> -->
-          <span>Sign up</span>
-        </button>
-      </div>
+      {% if user.is_authenticated %}
+        <div class="d-flex"></div>
+          <h5>Welcome, {{ user.username }}!</h5>
+          <form action="{% url 'account_logout' %}" method="POST">
+            {% csrf_token %}
+
+            <button type="submit" class="btn btn-secondary ms-3">
+              <span>Log out</span>
+            </button>
+          </form>
+        </div>
+      {% else %}
+        <div class="d-flex">
+          <button class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#loginModal">
+            <span>Log in</span>
+          </button>
+          <button class="btn btn-primary ms-3" data-bs-toggle="modal" data-bs-target="#signupModal">
+            <span>Sign up</span>
+          </button>
+        </div>
+      {% endif %}
     </div>
   </div>
 </nav>
 
-{% include '../account/login-modal.html' %}
-{% include '../account/signup.html' %}
+{% include '../accounts/login-modal.html' %}
+{% include '../accounts/signup.html' %}
