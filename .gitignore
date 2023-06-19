@@ -5,3 +5,9 @@
 
 # env
 .env
+
+# vscode
+.vscode
+
+# db
+db.sqlite3

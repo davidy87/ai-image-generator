@@ -1,11 +1,10 @@
 from django.shortcuts import render, redirect
 from django.contrib import messages
-from django.contrib.auth import authenticate, login, logout
+from django.contrib.auth import authenticate, login as auth_login, logout, views
 from django.views.generic import CreateView
 from django.utils.safestring import mark_safe
 from django.utils.html import format_html
 from django.urls import reverse
-
 from .forms import UserForm
 
 
@@ -14,19 +13,21 @@ def logout(request):
     if request.method == "POST":
         logout(request)
         return redirect('/')
-    
+
 
 def login(request):
     if request.method == "POST":
-        form = UserForm(request.POST)
+        username = request.POST['username']
+        password = request.POST['password']
+        user = authenticate(username=username, password=password)
 
-        if form.is_valid():
-            username = form.cleaned_data.get('username')
-            password = form.cleaned_data.get('password1')
-            user = authenticate(username=username, password=password)
-            login(request, user)
-
+        if user is not None:
+            auth_login(request, user)
             return redirect('/')
+        else:
+            messages.error(request, mark_safe('Username or Password is incorrect.'))
+
+    return redirect('/')
 
 
 def signup(request):
@@ -38,7 +39,8 @@ def signup(request):
             username = form.cleaned_data.get('username')
             password = form.cleaned_data.get('password1')
             user = authenticate(username=username, password=password)
-            login(request, user)
+            auth_login(request, user)
+            messages.success(request, 'You have signed up', extra_tags='signup_success')
             return redirect('/')
 
         else:
@@ -51,7 +53,6 @@ def signup(request):
             return redirect('/')
     
     form = UserForm()
-    print("HERE")
     return render(request, 'chatgpt_connector/index.html', {'form': form})
 
 

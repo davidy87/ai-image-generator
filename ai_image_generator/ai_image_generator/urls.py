@@ -14,6 +14,8 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
+from django.contrib.auth import views as auth_views
+
 from django.urls import path, include
 from chatgpt_connector.views import *
 from accounts.views import *
@@ -29,6 +31,7 @@ urlpatterns = [
     # path('signup/', UserCreateView.as_view(), name='signup'),
     path('signup/', signup, name='signup'),
     path('accounts/', include('allauth.urls')),
+    # path('login/', auth_views.LoginView.as_view(template_name='chatgpt_connector/index.html'), name='login'),
     path('login/', login, name='login'),
     path('logout/', logout, name='logout'),
 ]

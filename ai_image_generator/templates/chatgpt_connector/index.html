@@ -25,39 +25,49 @@
 
 <body>
   <header>
-    {% include "./navbar.html" %}
+    {% include './navbar.html' %}
   </header>
   
   <!-- Login / Sign Up result messages -->
   {% if messages %}
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
-    <template id="errorMessage">
-      {% if messages.tag == "error" %}
-        <swal-title>Sign Up Failed</swal-title>
-        <swal-icon type="error"></swal-icon>
-      {% else %}
-        <swal-title>Welcome! {{ messages.tag }}</swal-title>
-        <swal-icon type="success"></swal-icon>
+    {% for message in messages %}
+      {% if message.tags == "error" %}
+        <template id="errorMessage">
+            <swal-title>Sign Up Failed</swal-title>
+            <swal-icon type="error"></swal-icon>
+            <swal-html>
+              <br>
+              <ul>
+                {% for message in messages %}
+                  <li style="text-align: left;">{{ message }}</li>
+                  <br>
+                {% endfor %}
+              </ul>
+            </swal-html>
+            <swal-button type="confirm">OK</swal-button>
+        </template>
+
+        <script>
+          Swal.fire({
+            template: "#errorMessage",
+          });
+        </script>
+      {% elif message.extra_tags == "signup_success" %}
+        <template id="signupMessage">
+          <swal-title>Sign Up Succeeded!</swal-title>
+          <swal-icon type="success"></swal-icon>
+          <swal-button type="confirm">OK</swal-button>
+        </template>
+
+        <script>
+          Swal.fire({
+            template: "#signupMessage",
+          });
+        </script>
       {% endif %}
-
-      <swal-html>
-        <br>
-        <ul>
-          {% for message in messages %}
-            <li style="text-align: left;">{{ message }}</li>
-            <br>
-          {% endfor %}
-        </ul>
-      </swal-html>
-      <swal-button type="confirm">OK</swal-button>
-    </template>
-
-    <script>
-      Swal.fire({
-        template: "#errorMessage",
-      });
-    </script>
+    {% endfor %}
   {% endif %}
 
   <section class="intro">

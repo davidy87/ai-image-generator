@@ -42,7 +42,6 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'chatgpt_connector',
     'accounts',
-    "django_rename_app",
 
     # Following apps are required for allauth
     'allauth',
