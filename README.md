@@ -6,7 +6,7 @@ AI 모델 기반 그림 생성 web page
 
 ## Summary
 
-사용자가 prompt를 제공하면 그 설명을 바탕으로 AI가 그림을 생성해 주는 웹사이트입니다. ChatGPT의 개발 기업으로 잘 알려진 OpenAI가 제공하는 그림 생성 모델 DALL·E를 기반으로 한 API를 사용하였으며,
+사용자가 prompt를 제공하면 그 설명을 바탕으로 AI가 그림을 생성해 주는 웹사이트입니다. OpenAI에서 제공하는 그림 생성 모델 DALL·E를 기반으로 한 API를 사용하였습니다.
 
 <br>
 
