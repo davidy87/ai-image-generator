@@ -7,7 +7,7 @@ from chatgpt_connector.forms import *
 
 
 # Applying Secrets
-load_dotenv()
+load_dotenv(verbose=True)
 OPENAI_API_KEY = os.getenv("OPENAI_API_KEY")
 
 

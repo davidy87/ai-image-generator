@@ -16,9 +16,9 @@
   <link rel="icon" type="image/png" sizes="16x16" href="{% static 'chatgpt_connector/favicon/favicon-16x16.png' %}">
   <link rel="manifest" href="{% static 'chatgpt_connector/favicon/site.webmanifest' %}">
 
-  <script src="{% static 'chatgpt_connector/bootstrap-5.2.3/js/bootstrap.min.js' %}"></script>
+  <!-- <script src="{% static 'chatgpt_connector/bootstrap-5.2.3/js/bootstrap.min.js' %}"></script> -->
+  <script src="{% static 'chatgpt_connector/bootstrap-5.2.3/js/bootstrap.bundle.min.js' %}"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/6.3.1/mdb.min.js"></script>
-  <!-- <script src="{% static 'chatgpt_connector/bootstrap-5.2.3/js/bootstrap.bundle.js' %}"></script> -->
 
   <title>Online AI Image Generator | AImage</title>
 </head>
@@ -41,7 +41,7 @@
               <br>
               <ul>
                 {% for message in messages %}
-                  <li style="text-align: left;">{{ message }}</li>
+                  <li style="text-align: left;"><b>{{ message }}</b></li>
                   <br>
                 {% endfor %}
               </ul>
@@ -56,7 +56,10 @@
         </script>
       {% elif message.extra_tags == "signup_success" %}
         <template id="signupMessage">
-          <swal-title>Sign Up Succeeded!</swal-title>
+          <swal-title>Thanks for signing up!</swal-title>
+          <swal-html>
+            <p>Now you can enjoy our amazing features.</p>
+          </swal-html>
           <swal-icon type="success"></swal-icon>
           <swal-button type="confirm">OK</swal-button>
         </template>
@@ -80,6 +83,7 @@
           </h5>
           <a href="/generator" class="btn btn-primary">Generate AI Images »</a>
         </div>
+        
         <div class="col-lg-6 py-5">
           <img src="{% static 'chatgpt_connector/images/ai_image.jpeg' %}" alt="Image" class="img-fluid">
         </div>

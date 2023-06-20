@@ -27,11 +27,10 @@ urlpatterns = [
     path('generator/', generator, name='generator'),
     path('loading/', loading, name='loading'),
     path('result/', result, name='result'),
-    # path('login/', login, name='login'),
-    # path('signup/', UserCreateView.as_view(), name='signup'),
+    
+    # accounts
     path('signup/', signup, name='signup'),
     path('accounts/', include('allauth.urls')),
-    # path('login/', auth_views.LoginView.as_view(template_name='chatgpt_connector/index.html'), name='login'),
     path('login/', login, name='login'),
     path('logout/', logout, name='logout'),
 ]
